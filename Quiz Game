@@ -1,0 +1,24 @@
+def run_quiz(questions):
+    score = 0
+    for question, options, answer in questions:
+        print(question)
+        for i, option in enumerate(options, 1):
+            print(f"{i}. {option}")
+
+        user_answer = int(input("Enter your answer (1, 2, 3, or 4): "))
+        if user_answer == answer:
+            print("Correct!")
+            score += 1
+        else:
+            print("Wrong!")
+
+    print(f"You got {score} out of {len(questions)} questions correct.")
+
+# Sample questions (question, options, answer)
+questions = [
+    ("What is the capital of France?", ["1. London", "2. Paris", "3. Berlin", "4. Madrid"], 2),
+    ("Which planet is known as the Red Planet?", ["1. Mars", "2. Venus", "3. Jupiter", "4. Saturn"], 1),
+    ("What is 2 + 2?", ["1. 3", "2. 4", "3. 5", "4. 6"], 2)
+]
+
+run_quiz(questions)
