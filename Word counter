@@ -1,0 +1,28 @@
+def word_counter(text):
+    # Split the text into words
+    words = text.split()
+    
+    # Count the occurrences of each word
+    word_count = {}
+    for word in words:
+        # Remove punctuation marks
+        word = word.strip('.,!?;:"\'').lower()
+        if word:
+            word_count[word] = word_count.get(word, 0) + 1
+    
+    return word_count
+
+def main():
+    # Input text from the user
+    text = input("Enter some text: ")
+    
+    # Get word count
+    counts = word_counter(text)
+    
+    # Print word count
+    print("\nWord count:")
+    for word, count in counts.items():
+        print(f"{word}: {count}")
+
+if __name__ == "__main__":
+    main()
