@@ -1,0 +1,45 @@
+import csv
+import os
+
+def add_expense():
+    amount = float(input("Enter the amount spent: "))
+    category = input("Enter the category of expense: ")
+    description = input("Enter a description (optional): ")
+    
+    with open('expenses.csv', 'a', newline='') as csvfile:
+        fieldnames = ['Amount', 'Category', 'Description']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        
+        if os.stat('expenses.csv').st_size == 0:
+            writer.writeheader()
+        
+        writer.writerow({'Amount': amount, 'Category': category, 'Description': description})
+    print("Expense added successfully!")
+
+def view_expenses():
+    with open('expenses.csv', 'r') as csvfile:
+        reader = csv.DictReader(csvfile)
+        print("Expenses:")
+        for row in reader:
+            print(f"Amount: {row['Amount']}, Category: {row['Category']}, Description: {row['Description']}")
+
+def main():
+    while True:
+        print("\nExpense Tracker Menu:")
+        print("1. Add Expense")
+        print("2. View Expenses")
+        print("3. Quit")
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            add_expense()
+        elif choice == '2':
+            view_expenses()
+        elif choice == '3':
+            print("Exiting Expense Tracker. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
